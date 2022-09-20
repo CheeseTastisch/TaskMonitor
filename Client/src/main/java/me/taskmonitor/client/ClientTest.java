@@ -6,8 +6,10 @@ import oshi.software.os.OperatingSystem;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
+import java.net.InterfaceAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ClientTest {
 
@@ -25,23 +27,28 @@ public class ClientTest {
 
         HardwareAbstractionLayer hal = systemInfo.getHardware();
 
-        for (HWDiskStore diskStore : hal.getDiskStores()) {
-            System.out.println("---------");
-            System.out.println(diskStore.getName());
-            System.out.println(diskStore.getModel());
-            System.out.println(diskStore.getSerial());
-            System.out.println(diskStore.getSize());
-            for (HWPartition partition : diskStore.getPartitions()) {
-                System.out.println("---");
-                System.out.println(partition.getIdentification());
-                System.out.println(partition.getName());
-                System.out.println(partition.getType());
-                System.out.println(partition.getUuid());
-                System.out.println(partition.getSize());
-                System.out.println(partition.getMajor());
-                System.out.println(partition.getMinor());
-                System.out.println(partition.getMountPoint());
-            }
+        for (PowerSource powerSource : hal.getPowerSources()) {
+            System.out.println(powerSource.getName());
+            System.out.println(powerSource.getDeviceName());
+            System.out.println(powerSource.getRemainingCapacityPercent());
+            System.out.println(powerSource.getTimeRemainingEstimated());
+            System.out.println(powerSource.getTimeRemainingInstant());
+            System.out.println(powerSource.getPowerUsageRate());
+            System.out.println(powerSource.getVoltage());
+            System.out.println(powerSource.getAmperage());
+            System.out.println(powerSource.isPowerOnLine());
+            System.out.println(powerSource.isCharging());
+            System.out.println(powerSource.isDischarging());
+            System.out.println(powerSource.getCapacityUnits());
+            System.out.println(powerSource.getCurrentCapacity());
+            System.out.println(powerSource.getMaxCapacity());
+            System.out.println(powerSource.getDesignCapacity());
+            System.out.println(powerSource.getCycleCount());
+            System.out.println(powerSource.getChemistry());
+            System.out.println(powerSource.getManufactureDate());
+            System.out.println(powerSource.getManufacturer());
+            System.out.println(powerSource.getSerialNumber());
+            System.out.println(powerSource.getTemperature());
         }
 
 
