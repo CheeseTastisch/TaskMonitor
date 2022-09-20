@@ -1,10 +1,7 @@
 package me.taskmonitor.client;
 
 import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.GraphicsCard;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.hardware.PhysicalMemory;
+import oshi.hardware.*;
 import oshi.software.os.OperatingSystem;
 
 import java.lang.management.ManagementFactory;
@@ -28,44 +25,25 @@ public class ClientTest {
 
         HardwareAbstractionLayer hal = systemInfo.getHardware();
 
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getVendor());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getName());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getFamily());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getModel());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getStepping());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getProcessorID());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getIdentifier());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().isCpu64bit());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getVendorFreq());
-        System.out.println(hal.getProcessor().getProcessorIdentifier().getMicroarchitecture());
-        System.out.println("----");
-        System.out.println(hal.getProcessor().getMaxFreq());
-        System.out.println(Arrays.toString(hal.getProcessor().getCurrentFreq()));
-
-        for (CentralProcessor.LogicalProcessor logicalProcessor : hal.getProcessor().getLogicalProcessors()) {
-            System.out.println("----");
-            System.out.println(logicalProcessor.getProcessorNumber());
-            System.out.println(logicalProcessor.getPhysicalProcessorNumber());
-            System.out.println(logicalProcessor.getPhysicalPackageNumber());
-            System.out.println(logicalProcessor.getNumaNode());
-            System.out.println(logicalProcessor.getProcessorGroup());
+        for (HWDiskStore diskStore : hal.getDiskStores()) {
+            System.out.println("---------");
+            System.out.println(diskStore.getName());
+            System.out.println(diskStore.getModel());
+            System.out.println(diskStore.getSerial());
+            System.out.println(diskStore.getSize());
+            for (HWPartition partition : diskStore.getPartitions()) {
+                System.out.println("---");
+                System.out.println(partition.getIdentification());
+                System.out.println(partition.getName());
+                System.out.println(partition.getType());
+                System.out.println(partition.getUuid());
+                System.out.println(partition.getSize());
+                System.out.println(partition.getMajor());
+                System.out.println(partition.getMinor());
+                System.out.println(partition.getMountPoint());
+            }
         }
 
-        for (CentralProcessor.PhysicalProcessor physicalProcessor : hal.getProcessor().getPhysicalProcessors()) {
-            System.out.println("----");
-            System.out.println(physicalProcessor.getPhysicalProcessorNumber());
-            System.out.println(physicalProcessor.getPhysicalPackageNumber());
-            System.out.println(physicalProcessor.getEfficiency());
-            System.out.println(physicalProcessor.getIdString());
-        }
-
-        System.out.println("----");
-        System.out.println(Arrays.toString(hal.getProcessor().getSystemCpuLoadTicks()));
-        System.out.println(Arrays.toString(hal.getProcessor().getSystemCpuLoadTicks()));
-        System.out.println(hal.getProcessor().getLogicalProcessorCount());
-        System.out.println(hal.getProcessor().getPhysicalProcessorCount());
-        System.out.println(hal.getProcessor().getContextSwitches());
-        System.out.println(hal.getProcessor().getInterrupts());
 
 
 //
