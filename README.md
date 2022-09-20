@@ -3,7 +3,7 @@
 1. [Grundaufbau](#basicstructure)
 2. [Client](#client)
    1. [OSHI](#client_ohsi)
-   2. [Grundablauf](#client_basicflow)
+3. [Grundablauf Client-Server](#basicflow_client_server)
 
 <a name="basicstructure"></a>
 ## 1. Grundlegendes 
@@ -53,60 +53,116 @@ was zum einen den nachteil hat, dass die API Betriebssystem abhängig ist, jedoc
 dass die Einschränkungen der JVM umgangen werden können und es somit möglich ist mehr Daten abzufragen.
 Einige Informationen werden jedoch auch ohne JNA durch JVM Standards (Dateien lesen, ENV-Abfragen, ...) bereitgestellt.
 
-<a name="client_basicflow"></a>
-### ii. Grundablauf
+### ii. Informationen
+<details>
+  <summary>Allgemeine Informationen</summary>
+
+Allgemeine Informationen sind Information, die sich wären des laufenden Betriebes nicht oder selten ändern.
+Diese beinhalten:
+- Hostname (DESKTOP-LRMLFB0)
+- Mainboard
+  - Hersteller (Gigabyte Technology Co., Ltd.)
+  - Model (Z490 GAMING X)
+  - Hardware UID (03000200-0400-0500-0006-000700080009)
+- Firmware/BIOS
+  - Name (F4)
+  - Version (ALASKA - 1072009)
+  - Hersteller (American Megatrends Inc.)
+  - Veröffentlichungsdatum (2020-06-17)
+- CPU (je CPU)
+  - Kennung
+    - Hersteller (GenuineIntel)
+    - Name (Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz)
+    - Famille (6)
+    - Model (165)
+    - Stepping (5)
+    - Prozessor Id (BFEBFBFF000A0655)
+    - 64 Bit (true)
+    - Mikroarchitektur (AMD)
+  - Frequenz - evtl. unter Windows nicht verfügbar
+  - Kerne (8)
+  - Threads (16)
+  - Cache (je Cache)
+    - Level (L1)
+    - Cache Size (512 000)
+    - Line Size (1024)
+- Primärspeicher
+  - Kapazität (17096159232)
+  - Page Anzahl (4096)
+  - Swap Kapazität (12884901888)
+  - Virtuelle Kapazität (29981061120)
+  - Physisch (je Stick)
+    - Steckplatz (BANK 1)
+    - Kapazität (8589934592)
+    - Frequenz (2133000000)
+    - Hersteller (04CD)
+    - Typ (DDR4)
+- Sekundärspeicher (je Festplatte)
+  - Name (\\.\PHYSICALDRIVE0)
+  - Model (Samsung SSD 970 EVO Plus 250GB (Standardlaufwerke))
+  - Kapazität (250056737280)
+  - Partition (je Partition auf Festplatte)
+    - Identifikation (Datenträgernr. 0, Partitionsnr. 1)
+    - Typ (GPT: Standarddaten)
+    - UUID (f0cacdc2-d5bc-442f-a934-59dd0e8fe8a3)
+    - Kapazität (248831735808)
+    - Einbindepunkt (C:\) - nur unter Windows
+- GPU (je GPU)
+  - Name (NVIDIA GeForce RTX 2060)
+  - Hersteller (NVIDIA (0x10de))
+  - VRam (4293918720)
+- Netzwerkschnittstellen (je Schnittstelle inkl. lokale)
+  - Name (eth0)
+  - Index (7)
+  - Anzeigename (Intel(R) Ethernet Connection (11) I219-V)
+  - Schnittstellenalias (Ethernet)
+  - Maximal Übertragungseinheit (1500)
+  - Mac Adresse (18:c0:4d:63:c4:d7)
+  - IPv4 Adressen (je Adresse)
+    - Adresse (192.168.188.43)
+    - Subnetmask (24)
+  - IPv6 Adresse (je Adresse)
+    - Adresse (fe80:0:0:0:2db9:607a:a651:18e0)
+    - Prefix (64)
+  - Geschwindigkeit (1000000000)
+  - Unterschnittstellen (je Schnittstelle, vom Typ Netzwerkschnittstelle)
+- Netzteile (je Netzteil)
+  - Name (InternalBattery-0)
+- Soundkarten
+  - Name (NVIDIA Corporation NVIDIA High Definition Audio)
+  - Codec (NVIDIA High Definition Audio)
+- Betriebssystem
+  - Familie (Windows)
+  - Hersteller (Microsoft)
+  - Version (10)
+  - Codec (Home)
+  - Buildnummer (19044) 
+- Internet
+  - DNS (103.86.96.100, je Eintrag)
+  - IPv4 Standartgateway (192.168.188.1)
+  - IPv6 Standartgateway (fe80:0:0:0:18eb:1eb6:79ed:d46e)
+- Filesystem
+  - Maximale Anzahl Datei Deskriptoren (16711680)
+  - Dateispeicher (je Dateispeicher)
+    - Name (Lokale Festplatte (E:))
+    - Volumen (\\?\Volume{5ce94733-359b-4f6f-85d2-fde0986e55b6}\)
+    - Lable (Entwicklung)
+    - Mount (E:\)
+    - Beschreibung (Fixed drive)
+    - Typ (NTFS)
+    - Kapazität (52428795904)
+- Benutzer (je angemeldetem Benutzer) (möglich, Administrator rechte?)
+  - Sprache
+  - Währung
+  - Tastaturlayout
+</details>
+
+<a name="basicflow_client_server"></a>
+## 3. Grundablauf Client-Server
 
 Beim Starten des Clients werden allgemeine Informationen gesammelt und an den Server übermittelt.
 
 <!--
-Der Client liest beim start alle Systemspezifikationen aus und sendet diese einmal an den Server, von diesem erhält er eine ID,
-mit der der Client weitere Informationen an den Server senden um diesen Eindeutig zuzuordnen.
-
-Die Systemspezifikationen enthalten
-- Name des Geräts
-- CPU
-  - Modell
-  - Kerne
-  - Threads
-  - Frequenz
-  - Cache
-    - L1
-    - L2
-    - L3
-- RAM
-  - Frequenz
-  - Typ
-  - Größe
-- GPU
-  - Modell
-  - VRam
-- Sekundärspeicher (je Einheit)
-  - Größe
-  - Typ
-  - Frequenz
-- Netzwerkkarten
-  - Typ
-  - Frequenz
-  - Mac-Address
-- Betriebssystem
-  - Name
-  - Version
-  - Architektur
-- Externe Schnittstellen
-- Regionale Einstellungen
-  - Sprache
-  - Währung
-  - Tastaturlayout
-- Partitionen
-- Angemeldete Benutzer
-
-Nach der Übermittlung der Spezifikationen wird ein Timer gestartet, der in regelmäßigen Abständen ausgeführt wird.
-In welchem Abstand dies erfolgt kann am Server eingestellt werden und wird dem Client dann übermittelt.
-
-Bei jeder Ausführung des Timers erfolgen zwei Aktionen
-1. Es wird überprüft, ob sich Systemspezifikationen geändert haben und
-2. es werden derzeitige Daten ermittelt.
-
 Die derzeitigen Daten beinhalten
 - CPU
   - Auslastung einzelner Kerne
