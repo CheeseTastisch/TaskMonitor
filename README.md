@@ -102,7 +102,33 @@ Die derzeitigen Daten beinhalten
 - Partitionen
   - Belegt
 
-Änderungen an den Spezifikationen und die gesammelten Daten werden dann an den Server übergeben.
+Änderungen an den Spezifikationen und die gesammelten Daten werden dann an den Server übertragen.
+
+### Spezifikationen
+#### Name des Gerätes
+```java
+String hostname = InetAddress.getLocalHost().getHostName();
+hostname = hostname.endsWith(".local") ? hostname.replace(".local", "") : hostname;
+```
+
+Das .local wird bei manchen Geräten angehängt um zu signalisieren, dass sich das Gerät im lokalen Netzwerk befindet.
+Da dies für unsere Zwecke nicht wichtig ist, wird das .local entfernt.
+
+#### CPU
+##### Modell
+##### Kerne
+##### Threads
+##### Frequenz
+##### Cache
+###### L1
+###### L2
+###### L3
+#### Ram
+##### Modell
+##### Frequenz
+##### Typ
+##### Größe
+#### GPU
 
 ## Server
 ## Web-Server
