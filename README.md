@@ -61,96 +61,102 @@ Einige Informationen werden jedoch auch ohne JNA durch JVM Standards (Dateien le
 
 Allgemeine Informationen sind Information, die sich wären des laufenden Betriebes nicht oder selten ändern.
 Diese beinhalten:
-- Hostname (DESKTOP-LRMLFB0)
+- Hostname
 - Mainboard
-  - Hersteller (Gigabyte Technology Co., Ltd.)
-  - Model (Z490 GAMING X)
-  - Hardware UID (03000200-0400-0500-0006-000700080009)
+  - Hersteller
+  - Model
+  - Hardware UID
 - Firmware/BIOS
-  - Name (F4)
-  - Version (ALASKA - 1072009)
-  - Hersteller (American Megatrends Inc.)
-  - Veröffentlichungsdatum (2020-06-17)
+  - Name
+  - Version
+  - Hersteller
+  - Veröffentlichungsdatum
 - CPU (je CPU)
   - Kennung
-    - Hersteller (GenuineIntel)
-    - Name (Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz)
-    - Famille (6)
-    - Model (165)
-    - Stepping (5)
-    - Prozessor Id (BFEBFBFF000A0655)
-    - 64 Bit (true)
-    - Mikroarchitektur (AMD)
-  - Frequenz - evtl. unter Windows nicht verfügbar
-  - Kerne (8)
-  - Threads (16)
+    - Hersteller
+    - Name
+    - Famille
+    - Model
+    - Stepping
+    - Prozessor Id
+    - 64 Bit
+    - Mikroarchitektur
+  - Frequenz
+  - Kerne
+  - Threads
   - Cache (je Cache)
-    - Level (L1)
-    - Cache Size (512 000)
-    - Line Size (1024)
+    - Level
+    - Cache Size
+    - Line Size
 - Primärspeicher
-  - Kapazität (17096159232)
-  - Page Anzahl (4096)
-  - Swap Kapazität (12884901888)
-  - Virtuelle Kapazität (29981061120)
+  - Kapazität
+  - Page Anzahl
+  - Swap Kapazität
+  - Virtuelle Kapazität
   - Physisch (je Stick)
-    - Steckplatz (BANK 1)
-    - Kapazität (8589934592)
-    - Frequenz (2133000000)
-    - Hersteller (04CD)
-    - Typ (DDR4)
+    - Steckplatz
+    - Kapazität
+    - Frequenz
+    - Hersteller
+    - Typ
 - Sekundärspeicher (je Festplatte)
-  - Name (\\.\PHYSICALDRIVE0)
-  - Model (Samsung SSD 970 EVO Plus 250GB (Standardlaufwerke))
-  - Kapazität (250056737280)
+  - Name
+  - Model
+  - Kapazität
   - Partition (je Partition auf Festplatte)
-    - Identifikation (Datenträgernr. 0, Partitionsnr. 1)
-    - Typ (GPT: Standarddaten)
-    - UUID (f0cacdc2-d5bc-442f-a934-59dd0e8fe8a3)
-    - Kapazität (248831735808)
-    - Einbindepunkt (C:\) - nur unter Windows
+    - Identifikation
+    - Typ
+    - UUID
+    - Kapazität
+    - Einbindepunkt
 - GPU (je GPU)
-  - Name (NVIDIA GeForce RTX 2060)
-  - Hersteller (NVIDIA (0x10de))
-  - VRam (4293918720)
+  - Name
+  - Hersteller
+  - VRam
 - Netzwerkschnittstellen (je Schnittstelle inkl. lokale)
-  - Name (eth0)
-  - Anzeigename (Intel(R) Ethernet Connection (11) I219-V)
-  - Schnittstellenalias (Ethernet)
-  - Maximal Übertragungseinheit (1500)
-  - Mac Adresse (18:c0:4d:63:c4:d7)
+  - Name
+  - Anzeigename
+  - Schnittstellenalias
+  - Maximal Übertragungseinheit
+  - Mac Adresse
   - IPv4 Adressen (je Adresse)
-    - Adresse (192.168.188.43)
-    - Subnetmask (24)
+    - Adresse
+    - Subnetmask
   - IPv6 Adresse (je Adresse)
-    - Adresse (fe80:0:0:0:2db9:607a:a651:18e0)
-    - Prefix (64)
-  - Geschwindigkeit (1000000000)
+    - Adresse
+    - Prefix
+  - Geschwindigkeit
 - Netzteile (je Netzteil)
-  - Name (InternalBattery-0)
+  - Name
 - Soundkarten
-  - Name (NVIDIA Corporation NVIDIA High Definition Audio)
-  - Codec (NVIDIA High Definition Audio)
+  - Name
+  - Codec
+- USB-Geräte
+  - Name
+  - Hersteller
+  - ProduktId
+  - SerialId
+  - Angeschlossene USB-Geräte (je Gerät, USB-Gerät)
 - Betriebssystem
-  - Familie (Windows)
-  - Hersteller (Microsoft)
-  - Version (10)
-  - Codec (Home)
-  - Buildnummer (19044) 
+  - Familie
+  - Hersteller
+  - Version
+  - Codec
+  - Buildnummer 
 - Internet
-  - DNS (103.86.96.100, je Eintrag)
-  - IPv4 Standartgateway (192.168.188.1)
-  - IPv6 Standartgateway (fe80:0:0:0:18eb:1eb6:79ed:d46e)
+  - DNS (je Eintrag)
+  - IPv4 Standartgateway
+  - IPv6 Standartgateway
 - Filesystem
-  - Maximale Anzahl Datei Deskriptoren (16711680)
+  - Maximale Anzahl Datei Deskriptoren
   - Dateispeicher (je Dateispeicher)
-    - Name (Lokale Festplatte (E:))
-    - Volumen (\\?\Volume{5ce94733-359b-4f6f-85d2-fde0986e55b6}\)
-    - Lable (Entwicklung)
-    - Mount (E:\)
-    - Beschreibung (Fixed drive)
-    - Typ (NTFS)
-    - Kapazität (52428795904)
+    - Name 
+    - Volumen
+    - Lable
+    - Mount
+    - Beschreibung
+    - Typ
+    - Kapazität
 - Benutzer (je angemeldetem Benutzer) (möglich, Administrator rechte?)
   - Sprache
   - Währung
@@ -161,57 +167,34 @@ Diese beinhalten:
   <summary>Laufende Informationen</summary>
 
 Laufende Informationen sind Information, die sich wären des Betriebes laufend ändern.
+Zu jeder Information über eine Komponent wird noch eine Id hinzugefügt, über die eine eindeutige zuteilung möglich ist.
 Diese beinhalten:
 - CPU (je CPU)
   - Auslastung gesamt
   - Auslastung je Thread
+  - Temerpatur
 - Primärspeicher
-  - Verfügbar
   - Benutzt
-  - Swap
-    - Verfügbar
-    - Benutzt
-  - 
+  - Swap Benutzt
+  - Virtuell Benutzt
+  - Page In
+  - Page Out
 - Sekundärspeicher (je Festplatte)
-  - Name (\\.\PHYSICALDRIVE0)
-  - Model (Samsung SSD 970 EVO Plus 250GB (Standardlaufwerke))
-  - Kapazität (250056737280)
-  - Partition (je Partition auf Festplatte)
-    - Identifikation (Datenträgernr. 0, Partitionsnr. 1)
-    - Typ (GPT: Standarddaten)
-    - UUID (f0cacdc2-d5bc-442f-a934-59dd0e8fe8a3)
-    - Kapazität (248831735808)
-    - Einbindepunkt (C:\) - nur unter Windows
-- GPU (je GPU)
-  - Name (NVIDIA GeForce RTX 2060)
-  - Hersteller (NVIDIA (0x10de))
-  - VRam (4293918720)
+  - Verfügbare Kapazität
+  - Queuelänge
+  - Leseoperationen
+  - Gelesene Bytes
+  - Schreiboperationen
+  - Geschriebene Bytes
+  - Übertragungszeit
 - Netzwerkschnittstellen (je Schnittstelle inkl. lokale)
-  - Name (eth0)
-  - Index (7)
-  - Anzeigename (Intel(R) Ethernet Connection (11) I219-V)
-  - Schnittstellenalias (Ethernet)
-  - Maximal Übertragungseinheit (1500)
-  - Mac Adresse (18:c0:4d:63:c4:d7)
-  - IPv4 Adressen (je Adresse)
-    - Adresse (192.168.188.43)
-    - Subnetmask (24)
-  - IPv6 Adresse (je Adresse)
-    - Adresse (fe80:0:0:0:2db9:607a:a651:18e0)
-    - Prefix (64)
-  - Geschwindigkeit (1000000000)
-  - Unterschnittstellen (je Schnittstelle, vom Typ Netzwerkschnittstelle)
-- Netzteile (je Netzteil)
-  - Name (InternalBattery-0)
-- Soundkarten
-  - Name (NVIDIA Corporation NVIDIA High Definition Audio)
-  - Codec (NVIDIA High Definition Audio)
-- Betriebssystem
-  - Familie (Windows)
-  - Hersteller (Microsoft)
-  - Version (10)
-  - Codec (Home)
-  - Buildnummer (19044)
+  - Empfangene Bytes
+  - Gesendete Bytes
+  - Empfangene Pakete
+  - Gesendete Pakete
+  - Eingangsfehler
+  - Ausgangsfehler
+  - Kollisionen
 - Internet
   - DNS (103.86.96.100, je Eintrag)
   - IPv4 Standartgateway (192.168.188.1)
@@ -239,23 +222,6 @@ Beim Starten des Clients werden allgemeine Informationen gesammelt und an den Se
 
 <!--
 Die derzeitigen Daten beinhalten
-- CPU
-  - Auslastung einzelner Kerne
-  - Cache Belegung
-    - L1
-    - L2
-    - L3
-  - Benutze Frequenz
-- RAM
-  - Belegt
-  - Benutze Frequenz
-- GPU
-  - Belegter Speicher
-  - Benutze Frequenz
-- Sekundärspeicher (je Einheit)
-  - Belegt
-  - Leserate
-  - Speicherrate
 - Netzwerkkarten
   - Empfangsrate
   - Senderate

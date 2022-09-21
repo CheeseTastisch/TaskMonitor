@@ -31,6 +31,7 @@ public class GeneralInformation {
         generalInformation.networkIf();
         generalInformation.psu();
         generalInformation.soundcard();
+        generalInformation.usb();
         generalInformation.os();
         generalInformation.internet();
         generalInformation.fileSystem();
@@ -280,6 +281,34 @@ public class GeneralInformation {
         }
 
         System.out.println();
+    }
+
+    public void usb() {
+        System.out.println("USB-Geräte:");
+        for (UsbDevice usbDevice : this.hal.getUsbDevices(true)) {
+            printUsb(usbDevice, "  ");
+        }
+        System.out.println();
+    }
+
+    private void printUsb(UsbDevice usbDevice, String prefix) {
+        String name = usbDevice.getName();
+        String manufacturer = usbDevice.getVendor();
+        String productId = usbDevice.getProductId();
+        String serialId = usbDevice.getSerialNumber();
+
+        System.out.printf("""
+                %s%s
+                %s  Hersteller: %s
+                %s  ProduktId: %s
+                %s  SerialId: %s
+                %s  Angeschlossene Geräte:
+                """,
+                prefix, name, prefix, manufacturer, prefix, productId, prefix, serialId, prefix);
+
+        for (UsbDevice connectedDevice : usbDevice.getConnectedDevices()) {
+            printUsb(connectedDevice, prefix + "    ");
+        }
     }
 
     public void os() {
