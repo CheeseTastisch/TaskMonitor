@@ -1,11 +1,9 @@
 package me.taskmonitor.example;
 
+import me.taskmonitor.example.print.PrintHandler;
 import oshi.SystemInfo;
 import oshi.hardware.*;
-import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
-import oshi.software.os.OSFileStore;
-import oshi.software.os.OperatingSystem;
+import oshi.software.os.*;
 
 public class GeneralInformation {
 
@@ -17,24 +15,29 @@ public class GeneralInformation {
     }
 
     public static void test() {
-        GeneralInformation generalInformation = new GeneralInformation();
+        try (PrintHandler printHandler = new PrintHandler(false, true, "general")) {
+            printHandler.start();
 
-        generalInformation.setup();
+            GeneralInformation generalInformation = new GeneralInformation();
 
-        generalInformation.hostname();
-        generalInformation.mainboard();
-        generalInformation.firmware();
-        generalInformation.cpu();
-        generalInformation.ram();
-        generalInformation.hwDisk();
-        generalInformation.gpu();
-        generalInformation.networkIf();
-        generalInformation.psu();
-        generalInformation.soundcard();
-        generalInformation.usb();
-        generalInformation.os();
-        generalInformation.internet();
-        generalInformation.fileSystem();
+            generalInformation.setup();
+
+            generalInformation.hostname();
+            generalInformation.mainboard();
+            generalInformation.firmware();
+            generalInformation.cpu();
+            generalInformation.ram();
+            generalInformation.hwDisk();
+            generalInformation.gpu();
+            generalInformation.networkIf();
+            generalInformation.psu();
+            generalInformation.soundcard();
+            generalInformation.usb();
+            generalInformation.os();
+            generalInformation.internet();
+            generalInformation.fileSystem();
+            generalInformation.users();
+        }
     }
 
     public void setup() {
@@ -120,11 +123,8 @@ public class GeneralInformation {
                   Frequenz: %s
                   Kerne: %s
                   Threads: %s
+                  
                 """, frequenz, cores, threads);
-
-        System.out.println("""
-                  Cache: DOTO
-                """);
     }
 
     public void ram() {
@@ -298,12 +298,12 @@ public class GeneralInformation {
         String serialId = usbDevice.getSerialNumber();
 
         System.out.printf("""
-                %s%s
-                %s  Hersteller: %s
-                %s  ProduktId: %s
-                %s  SerialId: %s
-                %s  Angeschlossene Geräte:
-                """,
+                        %s%s
+                        %s  Hersteller: %s
+                        %s  ProduktId: %s
+                        %s  SerialId: %s
+                        %s  Angeschlossene Geräte:
+                        """,
                 prefix, name, prefix, manufacturer, prefix, productId, prefix, serialId, prefix);
 
         for (UsbDevice connectedDevice : usbDevice.getConnectedDevices()) {
@@ -379,8 +379,29 @@ public class GeneralInformation {
                           Beschreibung: %s
                           Typ: %s
                           Kapazität: %s
+                                        
                     """, name, volume, label, mountPoint, description, type, capacity);
         }
+    }
+
+    public void users() {
+        System.out.println("Benutzer:");
+        for (OSSession session : this.os.getSessions()) {
+            String name = session.getUserName();
+            String host = session.getHost();
+            String terminal = session.getTerminalDevice();
+            long logintime = session.getLoginTime();
+
+            System.out.printf("""
+                              %s:
+                                Host: %s
+                                Terminal: %s
+                                Loginzeit: %s
+                            """,
+                    name, host, terminal, logintime);
+        }
+
+        System.out.println();
     }
 
     public String better(String a, String b) {

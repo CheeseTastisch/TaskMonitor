@@ -1,5 +1,7 @@
 /.idea
 
+/dump/
+
 /Client/target
 /Example/target
 /Server/target

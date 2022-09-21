@@ -71,7 +71,7 @@ Diese beinhalten:
   - Version
   - Hersteller
   - Veröffentlichungsdatum
-- CPU (je CPU)
+- CPU
   - Kennung
     - Hersteller
     - Name
@@ -84,11 +84,7 @@ Diese beinhalten:
   - Frequenz
   - Kerne
   - Threads
-  - Cache (je Cache)
-    - Level
-    - Cache Size
-    - Line Size
-- Primärspeicher
+- Hauptspeicher
   - Kapazität
   - Page Anzahl
   - Swap Kapazität
@@ -158,9 +154,10 @@ Diese beinhalten:
     - Typ
     - Kapazität
 - Benutzer (je angemeldetem Benutzer) (möglich, Administrator rechte?)
-  - Sprache
-  - Währung
-  - Tastaturlayout
+  - Name
+  - Host
+  - Terminal
+  - Loginzeit
 </details>
 
 <details>
@@ -169,19 +166,19 @@ Diese beinhalten:
 Laufende Informationen sind Information, die sich wären des Betriebes laufend ändern.
 Zu jeder Information über eine Komponent wird noch eine Id hinzugefügt, über die eine eindeutige zuteilung möglich ist.
 Diese beinhalten:
-- CPU (je CPU)
-  - Auslastung gesamt
-  - Auslastung je Thread
-  - Temerpatur
-- Primärspeicher
+- CPU
+  - Auslastung
+  - Kontextänderungen
+  - Unterbrechungen
+  - Temperatur
+- Hauptspeicher
   - Benutzt
   - Swap Benutzt
   - Virtuell Benutzt
   - Page In
   - Page Out
 - Sekundärspeicher (je Festplatte)
-  - Verfügbare Kapazität
-  - Queuelänge
+  - Warteschlangenlänge
   - Leseoperationen
   - Gelesene Bytes
   - Schreiboperationen
@@ -192,58 +189,106 @@ Diese beinhalten:
   - Gesendete Bytes
   - Empfangene Pakete
   - Gesendete Pakete
-  - Eingangsfehler
-  - Ausgangsfehler
+  - Eingehende Fehler
+  - Ausgehente Fehler
   - Kollisionen
+- Betriebssystem
+  - Prozesse
+  - Threads
+  - Betriebszeit
+- Prozesse
+  - ID
+  - Name
+  - Pfad
+  - Befehl
+  - Argumente
+  - Umgebungsvariablen
+  - Arbeitsverzeichnis
+  - Benutzer
+  - Benutzer ID
+  - Gruppe
+  - Gruppen ID
+  - Status
+  - Elternprozess ID
+  - Priorität
+  - Virtuelle Größe
+  - Resistente Größe
+  - CPU Zeit
+  - Benutzer Zeit
+  - Startzeit
+  - Gelesen bytes
+  - Geschrieben bytes
+  - Geöffnete Dateien
+  - Kumulierte Prozessorlast
+  - Kleine Fehler
+  - Große Fehler
+  - Kontext änderungen
+  - Threads
+  - Threads (je benutzen Thread)
+    - ID
+    - Name
+    - Status
+    - Kumulierte Prozessorlast
+    - Beginnende Hauptspeicheradresse
+    - Kontext änderungen
+    - Kleine Fehler
+    - Große Fehler
+    - CPU Zeit
+    - Benutzer Zeit
+    - Startzeit
+    - Priorität
+- Services
+  - Prozess ID
+  - Name
+  - Status
+- Fenster (nur GUI Betriebssysteme)
+  - ID
+  - Title
+  - Command
+  - Position
+    - x
+    - y
+    - Höhe
+    - Breite
+  - Prozess
+  - Anordnung
+  - Sichtbar
 - Internet
-  - DNS (103.86.96.100, je Eintrag)
-  - IPv4 Standartgateway (192.168.188.1)
-  - IPv6 Standartgateway (fe80:0:0:0:18eb:1eb6:79ed:d46e)
+  - Stats
+    - TCPv4/6
+      - Aufgebaute Verbindungen
+      - Aktive Verbindungen
+      - Passive Verbindungen
+      - Verbindungsfehler
+      - Zurückgesetzte Verbindungen
+      - Gesendete Segmente
+      - Erhaltene Segmente
+      - Erneut gesendete Segmente
+      - Ausgehente Zurücksetzungen
+      - Eingehende Fehler
+    - UPDv4/6
+      - Datagrame gesendet
+      - Datagrame erhalten
+      - Datagrame ohne Port
+      - Fehlerhafte erhaltene Datagrame
+  - Verbindungen (je offener TCP Verbindung)
+    - Typ
+    - lokale Adresse
+    - lokaler Port
+    - fremde Adresse
+    - fremder Port
+    - Status
+    - Sendewarteschlange
+    - Empfangswarteschlange
+    - Besitzender Prozess
 - Filesystem
-  - Maximale Anzahl Datei Deskriptoren (16711680)
+  - Derzeitige Anzahl Datei Deskriptoren
   - Dateispeicher (je Dateispeicher)
-    - Name (Lokale Festplatte (E:))
-    - Volumen (\\?\Volume{5ce94733-359b-4f6f-85d2-fde0986e55b6}\)
-    - Lable (Entwicklung)
-    - Mount (E:\)
-    - Beschreibung (Fixed drive)
-    - Typ (NTFS)
-    - Kapazität (52428795904)
-- Benutzer (je angemeldetem Benutzer) (möglich, Administrator rechte?)
-  - Sprache
-  - Währung
-  - Tastaturlayout
+    - Freie Kapazität
+    - Benutzbare Kapazität
 </details>
 
 <a name="basicflow_client_server"></a>
 ## 3. Grundablauf Client-Server
 
 Beim Starten des Clients werden allgemeine Informationen gesammelt und an den Server übermittelt.
-
-<!--
-Die derzeitigen Daten beinhalten
-- Netzwerkkarten
-  - Empfangsrate
-  - Senderate
-- Prozesse
-  - ID
-  - children?
-  - parent?
-  - Info
-    - Command
-    - Arguments
-    - Startzeit
-    - CPU Zeit
-    - Benutzer
-  - Alive
-  - Memory
-    - Used
-    - Max
-- Partitionen
-  - Belegt
-
-Änderungen an den Spezifikationen und die gesammelten Daten werden dann an den Server übertragen.
-
-## Server
-## Web-Server
--->
