@@ -1,5 +1,6 @@
 /.idea
 
 /Client/target
+/Example/target
 /Server/target
 /Shared/target

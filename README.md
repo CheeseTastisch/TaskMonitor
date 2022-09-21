@@ -3,6 +3,7 @@
 1. [Grundaufbau](#basicstructure)
 2. [Client](#client)
    1. [OSHI](#client_ohsi)
+   2. [Informationen](#client_information)
 3. [Grundablauf Client-Server](#basicflow_client_server)
 
 <a name="basicstructure"></a>
@@ -53,6 +54,7 @@ was zum einen den nachteil hat, dass die API Betriebssystem abhängig ist, jedoc
 dass die Einschränkungen der JVM umgangen werden können und es somit möglich ist mehr Daten abzufragen.
 Einige Informationen werden jedoch auch ohne JNA durch JVM Standards (Dateien lesen, ENV-Abfragen, ...) bereitgestellt.
 
+<a name="client_information"></a>
 ### ii. Informationen
 <details>
   <summary>Allgemeine Informationen</summary>
@@ -113,6 +115,79 @@ Diese beinhalten:
   - VRam (4293918720)
 - Netzwerkschnittstellen (je Schnittstelle inkl. lokale)
   - Name (eth0)
+  - Anzeigename (Intel(R) Ethernet Connection (11) I219-V)
+  - Schnittstellenalias (Ethernet)
+  - Maximal Übertragungseinheit (1500)
+  - Mac Adresse (18:c0:4d:63:c4:d7)
+  - IPv4 Adressen (je Adresse)
+    - Adresse (192.168.188.43)
+    - Subnetmask (24)
+  - IPv6 Adresse (je Adresse)
+    - Adresse (fe80:0:0:0:2db9:607a:a651:18e0)
+    - Prefix (64)
+  - Geschwindigkeit (1000000000)
+- Netzteile (je Netzteil)
+  - Name (InternalBattery-0)
+- Soundkarten
+  - Name (NVIDIA Corporation NVIDIA High Definition Audio)
+  - Codec (NVIDIA High Definition Audio)
+- Betriebssystem
+  - Familie (Windows)
+  - Hersteller (Microsoft)
+  - Version (10)
+  - Codec (Home)
+  - Buildnummer (19044) 
+- Internet
+  - DNS (103.86.96.100, je Eintrag)
+  - IPv4 Standartgateway (192.168.188.1)
+  - IPv6 Standartgateway (fe80:0:0:0:18eb:1eb6:79ed:d46e)
+- Filesystem
+  - Maximale Anzahl Datei Deskriptoren (16711680)
+  - Dateispeicher (je Dateispeicher)
+    - Name (Lokale Festplatte (E:))
+    - Volumen (\\?\Volume{5ce94733-359b-4f6f-85d2-fde0986e55b6}\)
+    - Lable (Entwicklung)
+    - Mount (E:\)
+    - Beschreibung (Fixed drive)
+    - Typ (NTFS)
+    - Kapazität (52428795904)
+- Benutzer (je angemeldetem Benutzer) (möglich, Administrator rechte?)
+  - Sprache
+  - Währung
+  - Tastaturlayout
+</details>
+
+<details>
+  <summary>Laufende Informationen</summary>
+
+Laufende Informationen sind Information, die sich wären des Betriebes laufend ändern.
+Diese beinhalten:
+- CPU (je CPU)
+  - Auslastung gesamt
+  - Auslastung je Thread
+- Primärspeicher
+  - Verfügbar
+  - Benutzt
+  - Swap
+    - Verfügbar
+    - Benutzt
+  - 
+- Sekundärspeicher (je Festplatte)
+  - Name (\\.\PHYSICALDRIVE0)
+  - Model (Samsung SSD 970 EVO Plus 250GB (Standardlaufwerke))
+  - Kapazität (250056737280)
+  - Partition (je Partition auf Festplatte)
+    - Identifikation (Datenträgernr. 0, Partitionsnr. 1)
+    - Typ (GPT: Standarddaten)
+    - UUID (f0cacdc2-d5bc-442f-a934-59dd0e8fe8a3)
+    - Kapazität (248831735808)
+    - Einbindepunkt (C:\) - nur unter Windows
+- GPU (je GPU)
+  - Name (NVIDIA GeForce RTX 2060)
+  - Hersteller (NVIDIA (0x10de))
+  - VRam (4293918720)
+- Netzwerkschnittstellen (je Schnittstelle inkl. lokale)
+  - Name (eth0)
   - Index (7)
   - Anzeigename (Intel(R) Ethernet Connection (11) I219-V)
   - Schnittstellenalias (Ethernet)
@@ -136,7 +211,7 @@ Diese beinhalten:
   - Hersteller (Microsoft)
   - Version (10)
   - Codec (Home)
-  - Buildnummer (19044) 
+  - Buildnummer (19044)
 - Internet
   - DNS (103.86.96.100, je Eintrag)
   - IPv4 Standartgateway (192.168.188.1)
