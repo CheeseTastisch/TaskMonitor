@@ -291,4 +291,19 @@ Diese beinhalten:
 <a name="basicflow_client_server"></a>
 ## 3. Grundablauf Client-Server
 
-Beim Starten des Clients werden allgemeine Informationen gesammelt und an den Server übermittelt.
+Client und Server 
+
+[//]: # (TODO: Link zu Webpanel)
+
+Beim ersten start des Clients (evtl. bei der Installation?) werden die Verbindungsdaten zum Server abgefragt
+und in einer Konfiguration gespeichert.
+Des Weiteren muss über das Webpanel ein Schlüssel generiert werden, der für den ersten start des Clients benötigt wird.
+Danach erfolgt die Erstanmeldung beim Server, dieser übermittelt dem Client eine eindeutige ID
+und verbindet diese mit dem Schlüssel und der Hardware ID.
+Hierdurch können Clients auch nach Restart oder änderung des Hostname identifiziert werden.
+Danach können ID, Hardware ID und Schlüssel nur noch in kombination verwendet werden.
+
+[//]: # (TODO: Diagram einfügen)
+
+Bei jeder weiteren Anmeldung werden zuerst ID, Hardware ID und Schlüssel an den Server übermittelt.
+
