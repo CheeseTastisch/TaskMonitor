@@ -4,7 +4,11 @@
 2. [Client](#client)
    1. [OSHI](#client_ohsi)
    2. [Informationen](#client_information)
-3. [Grundablauf Client-Server](#basicflow_client_server)
+   3. [Zyklus](#client_cycle)
+3. [Grundablauf Client-Server](#basicflow)
+   1. [Erstanmeldung](#basicflow_first_login)
+   2. [Anmeldung](#basicflow_login)
+   3. [Kommunikationsaufbau](#basicflow_start_comuncication)
 
 <a name="basicstructure"></a>
 ## 1. Grundlegendes 
@@ -23,6 +27,8 @@ viele kritische Daten erkannt werden, wird der gesamte Client als kritisch angez
 
 <img src="diagramms/images/01_architecture.png" alt="Grundlegende Architektur">
 
+> Bild: Grundaufbau Kommunikation
+
 <a name="client"></a>
 ## 2. Client
 Der Client bekommt über zwei Arten Informationen
@@ -30,6 +36,8 @@ Der Client bekommt über zwei Arten Informationen
 2. OSHI
 
 <img src="diagramms/images/02_client_architecture.png" alt="Grundaufbau Abstraktion Client">
+
+> Bild: Java-Architektur Client
 
 <a name="client_ohsi"></a>
 ### i. [OSHI](https://github.com/oshi/oshi)
@@ -161,10 +169,10 @@ Diese beinhalten:
 </details>
 
 <details>
-  <summary>Laufende Informationen</summary>
+  <summary>Zyklische Informationen</summary>
 
-Laufende Informationen sind Information, die sich wären des Betriebes laufend ändern.
-Zu jeder Information über eine Komponent wird noch eine Id hinzugefügt, über die eine eindeutige zuteilung möglich ist.
+Zyklische Informationen sind Information, die sich wären des Betriebes laufend ändern.
+Zu jeder Information über eine Komponente wird noch eine Id hinzugefügt, über die eine eindeutige zuteilung möglich ist.
 Diese beinhalten:
 - CPU
   - Auslastung
@@ -288,10 +296,33 @@ Diese beinhalten:
     - Benutzbare Kapazität
 </details>
 
-<a name="basicflow_client_server"></a>
-## 3. Grundablauf Client-Server
+<a name="client_cycle"></a>
+### iii. Zyklen
+Ist der Client gestartet Arbeitet dieser in Zyklen. Wobei je Zyklus durchlauf Aktionen ausgeführt werden können.
+Aktionen können auch eine gewisse Anzahl an Zyklen arbeiten (z. B.: jeder 5 Zyklus).
+Hierfür wird eine API bereitgestellt.
 
-Client und Server 
+```java
+class CycleExample {
+
+  public void cycleExample(CycleManager cycleManager) {
+    cycleManager.registerEveryCycle(() -> System.out.println("Jeder Zyklus"));
+    cycleManager.registerCycle(5, () -> System.out.println("Jeder 5 Zyklus"));
+    cycleManager.start(1000); // Starten mit 1000ms abstand je Zyklus (= 1s)
+    cycleManager.stop();
+  }
+
+}
+```
+> Auszug: Methoden Zyklus manager
+
+
+<a name="basicflow"></a>
+## 3. Grundablauf Client-Server
+Client und Server kommunizieren über eine HTTP Verbindung miteinander.
+
+<a name="basicflow_first_login"></a>
+### i. Erstanmeldung
 
 [//]: # (TODO: Link zu Webpanel)
 
@@ -303,7 +334,26 @@ und verbindet diese mit dem Schlüssel und der Hardware ID.
 Hierdurch können Clients auch nach Restart oder änderung des Hostname identifiziert werden.
 Danach können ID, Hardware ID und Schlüssel nur noch in kombination verwendet werden.
 
-[//]: # (TODO: Diagram einfügen)
+<a name="basicflow_login"></a>
+### ii. Anmeldung
 
 Bei jeder weiteren Anmeldung werden zuerst ID, Hardware ID und Schlüssel an den Server übermittelt.
+Der Server geniert dann ein Session-Token, mit dem sich der Client bei jeder weiteren Anfrage verifiziert (Header).
+
+<a name="basicflow_start_comuncication"></a>
+### iii. Kommunikationsaufbau
+Um die Kommunikation mit dem Server aufzubauen, fragt der Client zuerst die Konfiguration ab.
+Die Konfiguration beinhaltet
+- Abstand je Zyklus,
+- Allgemeine Informationen und
+- Zyklische Informationen.
+
+Der Abstand je Zyklus gibt an, wie viel Millisekunden zwischen zwei Zyklen vergeht.
+
+Die allgemeinen Informationen geben an, welche allgemeinen Informationen am begin übermittelt werde sollen
+und in welchem zyklischen Abstand diese erneut überprüft werden sollen.
+
+Die zyklisch Informationen beinhalten, welche Informationen zu welchen zyklen an den Server gesendet werden siollen.
+
+### iv. Zyklen
 
