@@ -7,7 +7,7 @@
     <groupId>me.taskmonitor</groupId>
     <artifactId>TaskMonitor</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>1.0</version>
 
     <modules>
         <module>Shared</module>
@@ -19,7 +19,6 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <project.version>1.0</project.version>
     </properties>
 
 </project>
