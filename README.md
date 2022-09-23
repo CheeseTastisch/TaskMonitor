@@ -1,6 +1,6 @@
 # Task Monitor
 ## Inhaltsverzeichnis
-, fi1. [Grundaufbau](#1-grundlegendes)
+1. [Grundaufbau](#1-grundlegendes)
 2. [Client](#2-client)
    1. [OSHI](#i-client---oshi)
    2. [Informationen](#ii-client---informationen)
