@@ -8,7 +8,7 @@
 3. [Grundablauf Client-Server](#basicflow)
    1. [Erstanmeldung](#basicflow_first_login)
    2. [Anmeldung](#basicflow_login)
-   3. [Kommunikationsaufbau](#basicflow_start_comuncication)
+   3. [Kommunikationsaufbau](#iii-kommunikationsaufbau)
 
 <a name="basicstructure"></a>
 ## 1. Grundlegendes 
@@ -340,7 +340,6 @@ Danach können ID, Hardware ID und Schlüssel nur noch in kombination verwendet 
 Bei jeder weiteren Anmeldung werden zuerst ID, Hardware ID und Schlüssel an den Server übermittelt.
 Der Server geniert dann ein Session-Token, mit dem sich der Client bei jeder weiteren Anfrage verifiziert (Header).
 
-<a name="basicflow_start_comuncication"></a>
 ### iii. Kommunikationsaufbau
 Um die Kommunikation mit dem Server aufzubauen, fragt der Client zuerst die Konfiguration ab.
 Die Konfiguration beinhaltet
@@ -357,3 +356,4 @@ Die zyklisch Informationen beinhalten, welche Informationen zu welchen zyklen an
 
 ### iv. Zyklen
 
+In jedem [Client Zyklus](#iii-zyklen)
