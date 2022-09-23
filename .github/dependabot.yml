@@ -16,7 +16,7 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "maven" # See documentation for possible values
-    directory: "/Exa,ple/" # Location of package manifests
+    directory: "/Example/" # Location of package manifests
     schedule:
       interval: "daily"
 
