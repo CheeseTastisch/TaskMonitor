@@ -1,16 +1,17 @@
 # Task Monitor
 ## Inhaltsverzeichnis
-1. [Grundaufbau](#basicstructure)
-2. [Client](#client)
-   1. [OSHI](#client_ohsi)
-   2. [Informationen](#client_information)
-   3. [Zyklus](#client_cycle)
-3. [Grundablauf Client-Server](#basicflow)
-   1. [Erstanmeldung](#basicflow_first_login)
-   2. [Anmeldung](#basicflow_login)
-   3. [Kommunikationsaufbau](#iii-kommunikationsaufbau)
+, fi1. [Grundaufbau](#1-grundlegendes)
+2. [Client](#2-client)
+   1. [OSHI](#i-client---oshi)
+   2. [Informationen](#ii-client---informationen)
+   3. [Zyklus](#iii-client---zyklen)
+3. [Grundablauf Client-Server](#3-grundablauf-client-server)
+   1. [Erstanmeldung](#i-grundablauf-client-server---erstanmeldung)
+   2. [Anmeldung](#ii-grundablauf-client-server---anmeldung)
+   3. [Kommunikationsaufbau](#iii-grundablauf-client-server---kommunikationsaufbau)
+   4. [Zyklen](#iv-grundablauf-client-server---zyklen)
+   5. [Zusammenfassung](#v-grundablauf-client-server---zusammenfassung)
 
-<a name="basicstructure"></a>
 ## 1. Grundlegendes 
 Der Task Monitor besteht aus drei Hauptkomponenten
 - Client
@@ -29,7 +30,6 @@ viele kritische Daten erkannt werden, wird der gesamte Client als kritisch angez
 
 > Bild: Grundaufbau Kommunikation
 
-<a name="client"></a>
 ## 2. Client
 Der Client bekommt über zwei Arten Informationen
 1. JVM (Java Standard Bibliotheken) und
@@ -39,8 +39,9 @@ Der Client bekommt über zwei Arten Informationen
 
 > Bild: Java-Architektur Client
 
-<a name="client_ohsi"></a>
-### i. [OSHI](https://github.com/oshi/oshi)
+### i. Client - OSHI
+[OSHI Auf Github](https://github.com/oshi/oshi)
+
 OSHI steht für Operating System and Hardware Information, es ist eine API die auf [Java Native Access (JNA)](https://github.com/java-native-access/jna) basiert.
 Die API unterstützt
 - macOS,
@@ -62,8 +63,7 @@ was zum einen den nachteil hat, dass die API Betriebssystem abhängig ist, jedoc
 dass die Einschränkungen der JVM umgangen werden können und es somit möglich ist mehr Daten abzufragen.
 Einige Informationen werden jedoch auch ohne JNA durch JVM Standards (Dateien lesen, ENV-Abfragen, ...) bereitgestellt.
 
-<a name="client_information"></a>
-### ii. Informationen
+### ii. Client - Informationen
 <details>
   <summary>Allgemeine Informationen</summary>
 
@@ -296,8 +296,7 @@ Diese beinhalten:
     - Benutzbare Kapazität
 </details>
 
-<a name="client_cycle"></a>
-### iii. Zyklen
+### iii. Client - Zyklen
 Ist der Client gestartet Arbeitet dieser in Zyklen. Wobei je Zyklus durchlauf Aktionen ausgeführt werden können.
 Aktionen können auch eine gewisse Anzahl an Zyklen arbeiten (z. B.: jeder 5 Zyklus).
 Hierfür wird eine API bereitgestellt.
@@ -317,30 +316,26 @@ class CycleExample {
 > Auszug: Methoden Zyklus manager
 
 
-<a name="basicflow"></a>
 ## 3. Grundablauf Client-Server
 Client und Server kommunizieren über eine HTTP Verbindung miteinander.
 
-<a name="basicflow_first_login"></a>
-### i. Erstanmeldung
+### i. Grundablauf Client-Server - Erstanmeldung
 
 [//]: # (TODO: Link zu Webpanel)
 
-Beim ersten start des Clients (evtl. bei der Installation?) werden die Verbindungsdaten zum Server abgefragt
-und in einer Konfiguration gespeichert.
+Beim ersten start des Clients werden die Verbindungsdaten zum Server abgefragt und in einer Konfiguration gespeichert.
 Des Weiteren muss über das Webpanel ein Schlüssel generiert werden, der für den ersten start des Clients benötigt wird.
 Danach erfolgt die Erstanmeldung beim Server, dieser übermittelt dem Client eine eindeutige ID
 und verbindet diese mit dem Schlüssel und der Hardware ID.
 Hierdurch können Clients auch nach Restart oder änderung des Hostname identifiziert werden.
 Danach können ID, Hardware ID und Schlüssel nur noch in kombination verwendet werden.
 
-<a name="basicflow_login"></a>
-### ii. Anmeldung
+### ii. Grundablauf Client-Server - Anmeldung
 
 Bei jeder weiteren Anmeldung werden zuerst ID, Hardware ID und Schlüssel an den Server übermittelt.
 Der Server geniert dann ein Session-Token, mit dem sich der Client bei jeder weiteren Anfrage verifiziert (Header).
 
-### iii. Kommunikationsaufbau
+### iii. Grundablauf Client-Server - Kommunikationsaufbau
 Um die Kommunikation mit dem Server aufzubauen, fragt der Client zuerst die Konfiguration ab.
 Die Konfiguration beinhaltet
 - Abstand je Zyklus,
@@ -352,8 +347,20 @@ Der Abstand je Zyklus gibt an, wie viel Millisekunden zwischen zwei Zyklen verge
 Die allgemeinen Informationen geben an, welche allgemeinen Informationen am begin übermittelt werde sollen
 und in welchem zyklischen Abstand diese erneut überprüft werden sollen.
 
-Die zyklisch Informationen beinhalten, welche Informationen zu welchen zyklen an den Server gesendet werden siollen.
+Die zyklisch Informationen beinhalten, welche Informationen zu welchen zyklen an den Server gesendet werden sollen.
 
-### iv. Zyklen
+### iv. Grundablauf Client-Server - Zyklen
+Nach dem [Kommunikationsaufbau](#iii-grundablauf-client-server---kommunikationsaufbau) wird für jede
+Aktion ein Zyklus registriert. Sollten mehrere Aktionen den selben Zyklus abstand haben,
+wird dies mit einem Zyklus realisiert.
 
-In jedem [Client Zyklus](#iii-zyklen)
+In diesem Zyklus werden nun
+1. änderungen an allgemeinen Informationen und
+2. der Status von zyklischen Informationen
+
+abgefragt und an den Server gesendet.
+
+### v. Grundablauf Client-Server - Zusammenfassung
+
+<img src="./diagramms/images/03_basicflow_client_server.drawio.png" alt="Zusammenfassung Grundablauf Client-Server">
+> Bild: Zusammenfassung Grundablauf Client-Server
