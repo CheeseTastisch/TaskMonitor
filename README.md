@@ -12,6 +12,7 @@
    4. [Zyklen](#iv-grundablauf-client-server---zyklen)
    5. [Zusammenfassung](#v-grundablauf-client-server---zusammenfassung)
 4. [Datenbank](#4-datenbank)
+   1. [Vorteile](#i-datenbank---vorteile)
 
 ## 1. Grundlegendes 
 Der Task Monitor besteht aus drei Hauptkomponenten
@@ -369,6 +370,12 @@ abgefragt und an den Server gesendet.
 
 # 4. Datenbank
 
-Alls Datenbank sollte [SurrealDB](https://surrealdb.com/) verwendet werden.
-Jedoch existiert dafür derzeit kein Java Driver, sollte dieser bis zum Beginn der Datenbankanbindung nicht vorhanden sein,
-muss auf den [Websocket](https://surrealdb.com/docs/integration/websockets) zugegriffen werden.
+Als Datenbank wird [SurrealDB](https://surrealdb.com/) verwendet.
+
+## i. Datenbank - Vorteile
+
+Der eindeutig größte Vorteil an SurrealDB ist, dass die Datenbank sowohl als SQL als auch als noSQL Datenbank fungieren kann.
+Dies bedeutet, dass jede Datenbank standardmäßig Schemalos ist, ähnlich wie bei [MongoDB](https://www.mongodb.com/)
+können so Datensätze jeglicher Art in der Datenbank gespeichert werden können. Jedoch gibt es auch die möglichkeit, ein
+Schema für eine spezielle Datenbank zu definieren, an dass dann jeder Datensatz gebunden ist.
+
