@@ -363,4 +363,5 @@ abgefragt und an den Server gesendet.
 ### v. Grundablauf Client-Server - Zusammenfassung
 
 <img src="./diagramms/images/03_basicflow_client_server.drawio.png" alt="Zusammenfassung Grundablauf Client-Server">
+
 > Bild: Zusammenfassung Grundablauf Client-Server
