@@ -11,6 +11,7 @@
    3. [Kommunikationsaufbau](#iii-grundablauf-client-server---kommunikationsaufbau)
    4. [Zyklen](#iv-grundablauf-client-server---zyklen)
    5. [Zusammenfassung](#v-grundablauf-client-server---zusammenfassung)
+4. [Datenbank](#4-datenbank)
 
 ## 1. Grundlegendes 
 Der Task Monitor besteht aus drei Hauptkomponenten
@@ -365,3 +366,9 @@ abgefragt und an den Server gesendet.
 <img src="./diagramms/images/03_basicflow_client_server.drawio.png" alt="Zusammenfassung Grundablauf Client-Server">
 
 > Bild: Zusammenfassung Grundablauf Client-Server
+
+# 4. Datenbank
+
+Alls Datenbank sollte [SurrealDB](https://surrealdb.com/) verwendet werden.
+Jedoch existiert dafür derzeit kein Java Driver, sollte dieser bis zum Beginn der Datenbankanbindung nicht vorhanden sein,
+muss auf den [Websocket](https://surrealdb.com/docs/integration/websockets) zugegriffen werden.
